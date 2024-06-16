@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<style type="text/css">
+	body{
+		background-color: black;
+	}
+	div{
+		position: absolute;
+		border-width: 1px;
+		border-style: solid;
+	}
+	
+	.paper{
+		width: 840px;
+		height: 1188px;
+	}
+	
+	.pivot{
+		width: 840px;
+		height: 1px;
+		left:50%;
+	}
+	
+	.bg_bookmark_right{
+		position: absolute;
+		background-color: skyBlue;
+	}
+	
+	.ani_bookmark_left{
+		position: absolute;
+		background-color: skyBlue;
+	}
+	
+	.ani_bookmark_right{
+		position: absolute;
+		background-color: skyBlue;
+	}
+	
+	.page_left{
+		background-color: lightGray;
+	}
+	
+	.page_right{
+		background-color: white;
+		z-index:1;
+	}
+	
+	.mark_left{
+		width: 80px;
+		height: 160px;
+		border-radius: 10px 0px 0px 10px;
+	}
+	
+	.mark_right{
+		width: 80px;
+		height: 160px;
+		border-radius: 0px 10px 10px 0px;
+	}
+	
+	.hidden{
+		display:none;
+	}
+</style>
+<script src='https://code.jquery.com/jquery-3.7.1.js'></script>
+<script type="text/javascript">
+	let pivot
+	let RightPageOffset
+	let pageNum = 0
+	let bookmarkOffset = []
+	
+	function updatePivot(){
+		let left = $(window).width()/2 - 420;
+		$('.pivot').css({
+			left: left
+		})
+		console.log(pivot.left)
+	}
+	
+	function updateRightPageOffset(){
+		RightPageOffset = $('.pivot').offset()
+		top = RightPageOffset.top
+		left = RightPageOffset.left
+		$('.page_right').css({
+			top: top,
+			left: left
+		})
+	}
+	
+	function updateLeftPageOffset(){
+		top = RightPageOffset.top
+		left = RightPageOffset.left - 840
+		console.log(left)
+		$('.page_left').css({
+			top: top,
+			left: left
+		})
+	}
+	
+	function updateBookmarkOffset(){
+		for(let i = 0; i < 5; i++){
+			bookmarkOffset[i] = RightPageOffset
+			bookmarkOffset[i].left = $('.page_right').offset().left + $('.paper').width()
+			bookmarkOffset[i].top = $('.page_right').offset().top + i * $('.mark_right').height()
+			
+			let left = bookmarkOffset[i].left
+			let top = bookmarkOffset[i].top
+			
+			let tmp = '.mark_right.' + (i+1)
+			$( tmp ).css({
+				top: top,
+				left: left
+			})
+		}
+	}
+	
+	function TurnPageToNext(){
+		
+	}
+	
+	function TurnPageToPrevious(){
+	
+	}
+	
+	$(document).ready(function(){
+		pivot = $('.pivot').offset()
+		updatePivot();
+		updateRightPageOffset()
+		updateLeftPageOffset()
+		updateBookmarkOffset()
+		
+		$(window).resize(function(){
+			updatePivot();
+			updateRightPageOffset()
+			updateLeftPageOffset()
+			updateBookmarkOffset()
+		})
+	})
+</script>
+<body>
+	<div class="pivot">
+	</div>
+	<br>
+
+	<div class="paper front_cover_right">
+		<div class="front_cover_title"></div>
+	</div>
+	
+	<div class="bg_page_left paper page_left">
+	</div>
+	
+	<div class="bg_page_right 1 paper page_right">
+	</div>
+	
+	<div class="bg_page_right 2 paper page_right">
+	</div>
+	
+	<div class="bg_page_right 3 paper page_right">
+	</div>
+	
+	<div class="bg_page_right 4 paper page_right">
+	</div>
+	
+	<div class="bg_page_right 5 paper page_right" style= "padding:0 0 0 10px">
+	<h2>오범준의 포트폴리오(임시)</h2>
+	<hr>
+	
+	<h3>자기소개</h3>
+	SI 개발자를 지망하고 있습니다.
+	<br><br><hr>
+	
+	<h3>배우고 있는 것</h3>
+	Java, Html, CSS, JS, OracleDB, Linux
+	<br><br><hr>
+	
+	<h3>내 프로젝트</h3>
+	(준비중...)
+	<br><br><hr>
+	
+	<h3>팀 프로젝트</h3>
+	(준비중...)
+	<br><br><hr>
+	
+	<h3>BOJ 페이지</h3>
+	<a href='https://www.acmicpc.net/user/ov13'>https://www.acmicpc.net/user/ov13</a>
+	
+	</div>
+
+	<div class="bg_bookmark_right 1 mark_right">
+	</div>
+	
+	<div class="bg_bookmark_right 2 mark_right">
+	</div>
+	
+	<div class="bg_bookmark_right 3 mark_right">
+	</div>
+	
+	<div class="bg_bookmark_right 4 mark_right">
+	</div>
+	
+	<div class="bg_bookmark_right 5 mark_right">
+	</div>
+	
+	<div class="ani_bookmark_left 1">
+	</div>
+	
+	<div class="ani_bookmark_left 2">
+	</div>
+	
+	<div class="ani_bookmark_left 3">
+	</div>
+	
+	<div class="ani_bookmark_left 4">
+	</div>
+	
+	<div class="ani_bookmark_left 5">
+	</div>	
+	
+	<div class="ani_bookmark_right 1 mark_right">
+	</div>
+	
+	<div class="ani_bookmark_right 2 mark_right">
+	</div>
+	
+	<div class="ani_bookmark_right 3 mark_right">
+	</div>
+	
+	<div class="ani_bookmark_right 4 mark_right">
+	</div>
+	
+	<div class="ani_bookmark_right 5 mark_right">
+	</div>	
+	
+	<div class="ani_page_left">
+	</div>
+	
+	<div class="ani_page_right">
+	</div>
+	
+	<div class="back_cover_left">
+	</div>
+	
+	<div class="postit front_cover">
+	</div>
+	
+	<div class="postit back_cover">
+	</div>
+	
+	<div class="postit 1">
+	</div>
+	
+	<div class="postit 2">
+	</div>
+	
+	<div class="postit 3">
+	</div>
+	
+	<div class="postit 4">
+	</div>
+	
+	<div class="postit 5">
+	</div>
+	
+	<div class="namecard">
+	</div>
+	
+</body>
+</html>
