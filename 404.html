@@ -1,0 +1,17 @@
+<!-- 404.html -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>Redirecting...</title>
+  <script>
+    const fallback = '/index.html';
+    const fullPath = location.pathname;
+    sessionStorage.setItem('redirectPath', fullPath);
+    location.replace(fallback);
+  </script>
+</head>
+<body>
+  <p>페이지를 불러오는 중입니다...</p>
+</body>
+</html>
