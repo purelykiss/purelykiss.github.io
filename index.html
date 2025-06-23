@@ -31,9 +31,13 @@
     const basePath = base ? `/${base}/` : '/';
 
     function navigateTo(page) {
+      console(page)
       const path = pageMap[page] || 'main.html';
+      console(path)
       const absolutePath = '/' + path;  // 절대 경로 사용
+      console(absolutePath)
       history.pushState({ page }, '', absolutePath);
+      console(history)
       loadPage(page);
     }
 
@@ -43,7 +47,9 @@
     });
 
     function loadPage(page) {
+      console(page)
       const filePath = '/' + (pageMap[page] || 'main.html');  // 절대 경로 사용
+      console(filePath)
       fetch(filePath)
         .then(res => res.text())
         .then(html => {
