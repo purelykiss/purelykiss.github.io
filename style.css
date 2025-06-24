@@ -12,6 +12,7 @@ header {
   position: sticky;
   top: 0;
   z-index: 1000;
+  cursor: default;
 }
 
 .logo {
@@ -32,7 +33,6 @@ nav {
 .menu > a {
   color: white;
   text-decoration: none;
-  cursor: pointer;
 }
 
 .submenu {
@@ -43,8 +43,9 @@ nav {
   display: none;
   flex-direction: column;
   opacity: 0;
-  transition: opacity 0.5s;
+  transition: opacity 0.5s ease;
   min-width: 180px;
+  cursor: pointer;
 }
 
 .submenu a {
@@ -53,16 +54,33 @@ nav {
   text-decoration: none;
 }
 
-.menu:hover .submenu {
+.submenu.open {
   display: flex;
   opacity: 1;
+  pointer-events: auto;
 }
 
-.menu:not(:hover) .submenu {
+.submenu.closing {
+  display: flex;
+  opacity: 0;
+  pointer-events: auto;
+}
+
+.submenu.close {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* .menu:not(:hover) .submenu:not(:hover) {
   display: flex;
   opacity: 0;
   transition: opacity 0.5s;
-}
+} */
+
+/* .menu:hover .submenu {
+  display: flex;
+  opacity: 1;
+} */
 
 main {
   padding: 20px;
