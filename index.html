@@ -11,6 +11,8 @@
 
     <main id="content"></main>
 
+    <div id="footer"></div>
+
     <script>
       const pageMap = {
         greeting: 'intro/greeting.html',
@@ -74,10 +76,26 @@
         document.body.appendChild(script);
       }
 
+      function loadFooter() {
+        fetch('/footer.html')
+          .then((res) => {
+            if (!res.ok) throw new Error('footer.html을 불러올 수 없습니다.');
+            return res.text();
+          })
+          .then((html) => {
+            document.getElementById('footer').innerHTML = html;
+          })
+          .catch((err) => {
+            console.error(err);
+            document.getElementById('footer').innerHTML =
+              '<p>푸터 로딩 실패</p>';
+          });
+      }
+
       window.addEventListener('DOMContentLoaded', () => {
-        loadHeader().then(() => {
-          loadHeaderScript();
-        });
+        loadHeader()
+          .then(() => loadHeaderScript())
+          .then(() => loadFooter());
 
         // 404.html에서 redirect되었을 경우 경로 복원
         const redirectPath = sessionStorage.getItem('redirectPath');
